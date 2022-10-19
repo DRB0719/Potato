@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 // 生产者 加工者(加工地 加工产品[]) 运输 
-pragma solidity ^ 0.8.7;
+pragma solidity >=0.4.22 <0.9.0;
 pragma experimental ABIEncoderV2;
-contract potato {
+contract PotatoManage {
      struct Msg{
         uint proid;
         string date;
@@ -29,7 +29,7 @@ contract potato {
     mapping (address => Producer) mapProducer;
     event log(bytes32);
 
-    //添加工作用户 ;proid 1=生产者 2=加工者 3=运输;
+    //添加工作用户 ;proid 1=生产者 2=加工者 3=运输,4=商店;
      function Addproducer(uint _place,uint _proid)public {
         string[] memory _Mypotato;
         producerList.push(msg.sender);
@@ -128,7 +128,7 @@ contract potato {
    } 
 
    //哈希校验 需要上传本地土豆完整结构体
-    function checkhash(string memory _id,uint _weight,bool _icheck,string memory _class,uint _place, Msg[] memory _localhis)public returns(bool){
+    function checkhash(string memory _id,uint _weight,bool _icheck,string memory _class,uint _place, Msg[] memory _localhis)public view returns(bool){
         Potato storage quest = mapPotato[_id];
         string memory _history="";
         string memory _local="";
@@ -147,4 +147,5 @@ contract potato {
            return false;
        }
     }
+
 }
