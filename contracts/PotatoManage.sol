@@ -4,13 +4,14 @@ pragma solidity >=0.4.22 <0.9.0;
 pragma experimental ABIEncoderV2;
 contract PotatoManage {
      struct Msg{
-        uint proid;
+        uint protype;
         string date;
         string msgg;
     }
     struct Producer{
+        address username;//地址，唯一标识
         uint place;//1~34表示34个省市自治区
-        uint proid;//1=生产者 2=加工者 3=运输 4=商场
+        uint protype;//1=生产者 2=加工者 3=运输 4=商场
         string[] Mypotato;
     }
     struct Potato{
@@ -29,11 +30,11 @@ contract PotatoManage {
     mapping (address => Producer) mapProducer;
     event log(bytes32);
 
-    //添加工作用户 ;proid 1=生产者 2=加工者 3=运输,4=商店;
-     function Addproducer(uint _place,uint _proid)public {
+    //添加工作用户 ;protype 1=生产者 2=加工者 3=运输,4=商店;
+     function Addproducer(uint _place,uint _protype)public {
         string[] memory _Mypotato;
         producerList.push(msg.sender);
-        mapProducer[msg.sender]=Producer(_place,_proid,_Mypotato);
+        mapProducer[msg.sender]=Producer(msg.sender,_place,_protype,_Mypotato);
     }
 
     //将土豆添加到用户列表中 每个用户第一次对某批次土豆操作时使用,如商家销售土豆前先需要将土豆加入列表中
@@ -43,7 +44,7 @@ contract PotatoManage {
 
     //创建一批新的土豆 只能由生产者进行
     function NewPotato(string memory _id,string memory _class, string memory _date)public returns(bool){
-        if(mapProducer[msg.sender].proid==1){
+        if(mapProducer[msg.sender].protype==1){
        potatoList.push(_id);
        Potato storage quest = mapPotato[_id];
        quest.id=_id;
@@ -52,7 +53,7 @@ contract PotatoManage {
        quest.balance=0;
        quest.place=mapProducer[msg.sender].place;
        quest.weight=0;
-       quest.history.push(Msg(mapProducer[msg.sender].proid,_date,"start"));
+       quest.history.push(Msg(mapProducer[msg.sender].protype,_date,"start"));
       
        return true; //上传成功
        }
@@ -62,18 +63,18 @@ contract PotatoManage {
     //更新土豆信息 可以由所有用户进行
     function updatepotato(string memory _id,string memory _date,string memory _msg)public returns(bool){  
          Potato storage quest = mapPotato[_id];
-         quest.history.push(Msg(mapProducer[msg.sender].proid,_date,_msg));
+         quest.history.push(Msg(mapProducer[msg.sender].protype,_date,_msg));
          return true;
     }
 
     //检查土豆 只能由加工者进行 在此处更新土豆重量
     function checkpotato(string memory _id,uint _weight,bool _icheck,string memory _date,string memory _msg)public returns(bool){
-        if(mapProducer[msg.sender].proid==2){
+        if(mapProducer[msg.sender].protype==2){
         Potato storage quest = mapPotato[_id];
         quest.icheck=_icheck;
         quest.weight=_weight;
         quest.balance=_weight;
-        quest.history.push(Msg(mapProducer[msg.sender].proid,_date,_msg));
+        quest.history.push(Msg(mapProducer[msg.sender].protype,_date,_msg));
         return true;
         }
         else{
@@ -85,11 +86,11 @@ contract PotatoManage {
 
     //销售土豆 只能由商家进行
     function storepotato(string memory _id,string memory _date,string memory _msg,uint _weight)public returns(bool){
-        if(mapProducer[msg.sender].proid==4){
+        if(mapProducer[msg.sender].protype==4){
             Potato storage quest = mapPotato[_id];
             if(quest.balance>_weight){
                 quest.balance=quest.balance-_weight;
-                quest.history.push(Msg(mapProducer[msg.sender].proid,_date,_msg));
+                quest.history.push(Msg(mapProducer[msg.sender].protype,_date,_msg));
                  return true;
             }
             else return false;
