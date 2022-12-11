@@ -1,0 +1,190 @@
+.relative{
+  position: relative;
+}
+.absolute{
+  position: absolute;
+}
+.border-show{
+  border: 1px solid #fff;
+}
+.hidden{
+  overflow: hidden;
+  height: 136px;
+}
+.block{
+  display: block;
+}
+
+
+/* 基本信息 */
+.moveBase:hover{
+  cursor: pointer;animation-play-state: paused;
+}
+.moveBase{
+  width:1140px;
+  height: 136px;
+  animation-name: move;
+  animation-duration: 14s;
+  animation-iteration-count:infinite;
+  animation-timing-function: linear;
+}
+@keyframes move1 {
+  from{
+      transform: translateX(0px);
+  }to{
+      transform: translateX(-370px);
+      /* -960px是屏幕总宽度 */
+  }
+}
+@keyframes move{
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    transform: translateX(-710px);
+  }
+}
+
+/* 种类按钮 */
+.choose1{
+  padding-top: 30px;
+  padding-left: 60px;
+  font-size: 15px;
+}
+.choose2{
+  font-size: 15px;
+  float: right;
+  margin-top: 20px;
+  margin-right: 5px;
+}
+
+.choose li{
+  /* padding: 5px 10px; */
+  /* border:1px solid #0BC4E9; */
+  height:32px; 
+  line-height: 32px;
+  float:left;
+  
+}
+.choose li a{
+  color: #0BC4E9;
+  border:1px solid #0BC4E9;
+  padding:5px 10px;
+}
+.nav:hover a{
+  color: #fff;
+  border-color: #7CD5FB;
+  background-color: #7CD5FB;
+}
+.nav:focus a{
+  color: #fff;
+  border-color: #7CD5FB;
+  background-color: #7CD5FB;
+}
+.choose .navIn a{
+  color: #fff;
+  border-color: #7CD5FB;
+  background-color: #7CD5FB;
+}
+.choose .navOut a{
+  color: #0BC4E9;
+  border:1px solid #0BC4E9;
+}
+
+/* 标头 */
+.title{
+  left:35%;
+}
+
+
+/* 条状图 */
+.tip2 span{
+  color: rgb(203, 208, 255);
+  font-size: 9px;
+}
+.tip2{
+  top:60px;
+  left:20px;
+}
+
+.tip3{
+  bottom:18px;
+  left:30px;
+  width:80%;
+  border-radius: 12px;
+}
+
+.bar{
+  height: 20px;
+}
+.bar li{
+  overflow: hidden;
+}
+.bar li span{
+  text-align: center;
+  padding-left: 20%;
+  color: #fff;
+  font-size: 10px;
+}
+.bar1{
+  /* position: relative; */
+  background-color: rgb(0, 174, 255);
+  float:left;
+  width:20%;
+  height: 100%;
+  border-radius: 12px 0 0 12px;
+}
+.bar2{
+  /* position: relative; */
+  background-color: rgb(76, 0, 255);
+  float:left;
+  width:50%;
+  height: 100%;
+}
+.bar3{
+  /* position: relative; */
+  background-color: rgb(0, 129, 24);
+  float:left;
+  width:30%;
+  height: 100%;
+  border-radius: 0 12px 12px 0;
+}
+
+
+/* mapTip */
+.mapTip{
+  position: absolute;
+  right:0;
+  bottom:0;
+  color: #fff;
+  width: 200px;
+  height: 340px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: #0BC4E9 solid 1px;
+  display:block;
+}
+.mapTip div{
+  border-bottom: #0BC4E9 solid 1px;
+  padding: 3px;
+  margin-bottom: 2px;
+}
+.center .mapTip div span{
+  color:#0BC4E9;
+  text-align: center;
+}
+
+.center .mapTip ul li{
+  line-height: 12px;
+  /* border:1px solid #0BC4E9; */
+}
+.center .mapTip span{
+  font-size: 12px;
+}
+.mapTip_left{
+  float: left;
+  width:40%;
+}
+.mapTip_right{
+  float: right;
+  width:40%;
+}

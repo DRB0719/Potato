@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<title>统计</title>
+<link rel="stylesheet" type="text/css" href="css/new.css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/scanboard.css" />
+<link rel="stylesheet" type="text/css" href="css/animsition.css" />
+<link rel="stylesheet" type="text/css" href="css/border.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.shCircleLoader.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.shCircleLoader-min.js"></script>
+<!-- 中国地图 -->
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/china.js"></script>
+</head>
+<body>
+	<div id="loader"></div>
+	<script type="text/javascript">
+		$('#loader').shCircleLoader({color: "#00deff"});
+	</script>
+	<!--Top Start!-->
+	<div class="scanboardWp animsition">
+		<!-- 顶部 -->
+		<div id="top" class="relative border-show">
+			<div class="wp clearfix">
+				<!-- <div class="left pageTit fl">
+					<a class="summaryBtn" href="javascript:;">农产品种类选择</a>
+				</div> -->
+				<!-- 种类按钮 -->
+				<!-- <div class="clearfix">
+					<a href="javascript:;" class="fl" id="b1">1</a>
+				</div>
+				 -->
+				<!-- 位置待修改，样式待修改 -->
+				<div class="clearfix absolute">
+					<ul class="choose choose1" id="chooseBox">
+						<li class="nav" tabindex="1"></li>
+						<li class="nav" tabindex="2"></li>
+						<li class="nav" tabindex="3"></li>
+						<li class="nav" tabindex="4"></li>
+						<li class="nav" tabindex="5"></li>
+						<li class="nav" tabindex="6"></li>
+					</ul>
+				</div>
+				<div class="title topLogo absolute">
+					<a ref="#">农产品溯源数据统计</a>
+				</div>
+				<div class="right topBar">
+					<div class="topTime">时间加载中...</div>
+					<!-- <div class="clearfix">
+						<a href="javascript:;" class="signOut fr" id="re">刷新</a>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<!--Top End!-->
+		
+		<!--Main Start!-->
+		<div id="main" class="wp clearfix">
+			<div class="left">
+				<!--左12-->
+				<!-- 完工 -->
+				<div class="item border rightTop relative">
+					<div class="itemTit">
+						<span class="border-yellow border-left">农产品销量产量比排行(前六)</span>
+					</div>
+					<!-- 显示销量产量占比 -->
+					<div id="tip2" class="absolute tip2"><span></span></div>
+					<!-- 图标 -->
+					<div id="echarts-left2" style="width: 100%;height:400px;"></div>
+					
+				</div>
+				<!--左3-->
+				<!-- 底下的条条弄明显点、好看点 -->
+				<div class="item border rightTop relative">
+					<!-- 头 -->
+					<div class="itemTit">
+						<span class="border-yellow border-left">各季度产量占比&产量前三地区</span>
+					</div>
+					<!-- 月内农产品占比 -->
+					<div id="tip3" class="absolute tip3 tip">
+						<!-- 条状图 -->
+						<ul class="bar" id="bar">
+							<!-- 色块 -->
+							<li class="bar1"><span>重庆</span></li>
+							<li class="bar2"><span>上海</span></span></li>
+							<li class="bar3"><span>广州</span></li>
+						</ul>
+					</div>
+					<div id="echarts-left3" style="width: 100%;height:270px;"></div>
+				</div>
+			</div>
+
+			<div class="center">
+				<div class="centerWp">
+					<!--中间大地图-->
+					<div class="item itembg border rightTop">
+						<div class="itemTit">
+							<span class="border-green border-left block">年产量热力图</span>
+							<!-- 切换按钮 -->
+							<ul class="choose choose2">
+								<li id="chanliang"><a>产量</a></li>
+								<li id="xiaoliang"><a>销量</a></li>
+							</ul>
+							<!-- 销售点数据列表 -->
+							<div class="mapTip" id="mapTip">
+								<div class="clearfix"><span id="mapTipTitle">浦东新区</span></div>
+								<ul id="mapTipUl">
+									<li class="clearfix"><span class="mapTip_left">销售点</span><span class="mapTip_right">销量</span></li>
+									<li class="clearfix"><span class="mapTip_left">A</span><span class="mapTip_right">126KG</span></li>
+									<li class="clearfix"><span class="mapTip_left">Aakdhqoid qk</span><span class="mapTip_right">126KG</span></li>
+									<li class="clearfix"><span class="mapTip_left">C</span><span class="mapTip_right">126KG</span></li>
+								</ul>
+							</div>
+						</div>
+						<div id="echarts-center1" style="width: 100%;height:450px;"></div>
+						
+					</div>
+					<!--中间下部-->
+					<!-- 前一周的数据，包括销量产量 -->
+					<div class="item itembg border rightTop">
+						<div class="itemTit">
+							<span class="border-yellow border-left">上月产量</span>
+						</div>
+						<div id="echarts-center2" style="width: 100%;height:220px;"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="right">
+				<!--右1-->
+				<!-- 单位修改 -->
+				<div class="item total itembg border rightTop">
+					<div class="itemTit">
+						<span class="border-yellow border-left">总计产量</span>
+					</div>
+					<div class="itemCon" style="height:80px;">
+						<div class="totalNum border-left"><strong id="totalNum">0</strong><span id="totalDanwei">公斤</span></div>
+					</div>
+				</div>
+				<!--右2-->
+				<!-- 完工 -->
+				<div class="item basicInfo border rightTop">
+					<div class="itemTit">
+						<span class="border-green border-left">基本信息</span>
+					</div>
+					<div class="itemCon itembg hidden">
+						<div class="infoPie">
+							<ul class="clearfix moveBase" id="baseCircleBox">
+								<!-- 5 -->
+								<li class="color-pink">
+									<span class="border-pink" id="indicator0">0</span>
+									<p>销售点</p>
+								</li>
+								<!-- 1 -->
+								<li class="color-yellow">
+									<span class="border-yellow" id="indicator1">0</span>
+									<p>产地点</p>
+								</li>
+								<!-- 2 -->
+								<li class="color-green">
+									<span class="border-green" id="indicator2">0</span>
+									<p>产品类型</p>
+								</li>
+								<!-- 3 -->
+								<li class="color-blue">
+									<span class="border-blue" id="indicator3">0</span>
+									<p>加工点</p>
+								</li>
+								<!-- 4 -->
+								<li class="color-red">
+									<span class="border-red" id="indicator4">0%</span>
+									<p>合格率%</p>
+								</li>
+								<!-- 5 -->
+								<li class="color-pink">
+									<span class="border-pink" id="indicator5">0</span>
+									<p>销售点</p>
+								</li>
+								<!-- 1 -->
+								<li class="color-yellow">
+									<span class="border-yellow" id="indicator6">0</span>
+									<p>产地点</p>
+								</li>
+								<!-- 2 -->
+								<li class="color-green">
+									<span class="border-green" id="indicator7">0</span>
+									<p>产品类型</p>
+								</li>
+							</ul>
+							<div id="indicatorContainer"></div>
+						</div>
+					</div>
+				</div>
+				<!--右3-->
+				<div class="item border rightTop">
+					<div class="itemTit">
+						<span class="border-yellow border-left">每日查询次数&新增用户数</span>
+					</div>
+					<div id="echarts-right3" style="width: 100%;height:320px;"></div>
+				</div>
+
+			</div>
+		</div>
+		<!--Main End!-->
+	</div>
+	<canvas id="canvas" style="position: absolute;top: 0;left: 0;"></canvas> 
+</body>
+<script type="text/javascript" src="js/bg.js"></script>
+<script type="text/javascript" src="js/time.js"></script>
+<script type="text/javascript" src="js/fontscroll.js"></script>
+<script type="text/javascript" src="js/jquery.animsition.js"></script>
+<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+<!-- tooltips轮换 -->
+<script type="text/javascript" src="js/loop-tip.js"></script>
+<script type="text/javascript" src="js/myEcharts.js"></script>
+</html>
